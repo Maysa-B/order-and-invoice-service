@@ -2,12 +2,19 @@ import axios from 'axios'
 
 const useAxios = () => {
     const authStore = useAuthStore()
+    const env = useRuntimeConfig()
+    const router = useRouter()
+
     const axiosConfigured = axios.create({
-        baseURL: 'http://localhost:4000'
+        baseURL: env.public.API_URL
     })
 
     axiosConfigured.interceptors.response.use(({ data }) => data, error => {
-        if (error.status === 401) console.log('redirect') // adicionar função de redirect
+        if (error.status === 401) {
+            authStore.logout()
+            return router.push('/login') 
+            // add "You must be logged to view this page" warning
+        }
     })
 
     if (authStore.token)

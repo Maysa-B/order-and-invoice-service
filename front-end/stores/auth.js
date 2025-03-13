@@ -13,6 +13,10 @@ export const useAuthStore = defineStore('authStore', {
 
             this.user = user ? JSON.parse(user) : {}
             this.token = token ? JSON.parse(token) : ''
+        },
+        logout() {
+            Cookie.remove('user')
+            Cookie.remove('token')
         }
     }
 })
