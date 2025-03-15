@@ -17,6 +17,9 @@ export const useAuthStore = defineStore('authStore', {
         logout() {
             Cookie.remove('user')
             Cookie.remove('token')
+
+            this.user = null
+            this.token = null
         }
     }
 })

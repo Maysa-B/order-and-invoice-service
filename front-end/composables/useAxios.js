@@ -12,7 +12,7 @@ const useAxios = () => {
     axiosConfigured.interceptors.response.use(({ data }) => data, error => {
         if (error.status === 401) {
             authStore.logout()
-            return router.push('/login') 
+            return router.push('/') 
             // add "You must be logged to view this page" warning
         }
     })
