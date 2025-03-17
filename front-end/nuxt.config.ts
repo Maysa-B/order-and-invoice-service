@@ -1,6 +1,6 @@
 const env = process.env
 
-const { AUTH_SERVICE } = env
+const { AUTH_SERVICE, ORDER_SERVICE } = env
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -10,7 +10,8 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
     public: {
-      AUTH_SERVICE
+      AUTH_SERVICE,
+      ORDER_SERVICE
     }
   }
 })

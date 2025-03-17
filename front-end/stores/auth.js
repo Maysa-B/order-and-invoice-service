@@ -14,12 +14,14 @@ export const useAuthStore = defineStore('authStore', {
             this.user = user ? JSON.parse(user) : {}
             this.token = token ? JSON.parse(token) : ''
         },
-        logout() {
+        logout(router) {
             Cookie.remove('user')
             Cookie.remove('token')
 
             this.user = null
             this.token = null
+
+            router && router.push('/')
         },
         setCookies(user, token) {
             Cookie.set('user', JSON.stringify(user))

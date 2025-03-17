@@ -40,7 +40,8 @@ router.get('/auth/google/callback', passport.authenticate('google', {
 }), (req, res, next) => {
     res.cookie('user', JSON.stringify(req.user))
     res.cookie('token', JSON.stringify(generateToken(req.user)))
-    res.redirect('http://localhost:3000/inside')
+    // colocar env
+    res.redirect(`http://localhost:3000/perfil`)
 })
 
 router.get('/logout', (req, res) => {
