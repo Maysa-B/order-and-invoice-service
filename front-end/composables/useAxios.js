@@ -5,16 +5,10 @@ const useAxios = () => {
     const env = useRuntimeConfig()
     const router = useRouter()
 
-    const axiosConfigured = axios.create({
-        baseURL: env.public.API_URL
-    })
+    const axiosConfigured = axios.create({ })
 
     axiosConfigured.interceptors.response.use(({ data }) => data, error => {
-        if (error.status === 401) {
-            authStore.logout()
-            return router.push('/') 
-            // add "You must be logged to view this page" warning
-        }
+        return Promise.reject(error)
     })
 
     if (authStore.token)

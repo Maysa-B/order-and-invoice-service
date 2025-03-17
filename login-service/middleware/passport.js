@@ -14,7 +14,11 @@ passport.use(new GoogleStrategy({
     const select = await db.users.find(profile.id)
 
     if (select?.data?.length < 1) {
-        const { error, data } = await db.users.insert(profile.id, profile.displayName, profile.emails.find(email => email.verified)?.value )
+        const { error, data } = await db.users.insert({
+            google_id: profile.id, 
+            name: profile.displayName, 
+            email: profile.emails.find(email => email.verified)?.value
+        })
 
         return done(error, data)
     }

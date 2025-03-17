@@ -11,7 +11,7 @@
 				<section class="d-flex justify-content-around align-items-center w-100 pt-4">
 					<button @click="submitForm" class="btn btn-sm btn-primary mt-1">Register</button>
 					<span class="small">or</span>
-					<a class="btn btn-sm btn-light" href="http://localhost:4000/login">
+					<a class="btn btn-sm btn-light" :href="`${env.public.AUTH_SERVICE}/auth/google`">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 							class="bi bi-google" viewBox="0 0 16 16">
 							<path
@@ -28,6 +28,19 @@
 
 <script setup>
 const toast = ref(null)
+const authStore = useAuthStore()
+const env = useRuntimeConfig()
+const router = useRouter()
+const axios = useAxios()
+
+definePageMeta({
+    middleware: ['auth']
+})
+
+onBeforeMount(() => {
+	if (authStore?.token) router.push('/inside')
+})
+
 
 const form = ref({
     name: '',
@@ -51,7 +64,10 @@ const submitForm = async () => {
     if (formValue.password !== formValue.password_confirm)
 		return toast.value.showToast('Password and password confirmation don\'t match', 'error')
 
-	// acessa api de register
+	await axios.post(`${env.public.AUTH_SERVICE}/register`, form.value).then(({ user, token }) => {
+		authStore.setCookies(user, token)
+		router.push('/inside')
+	}).catch(err => toast.value.showToast(err, 'error'))
 }
 
 </script>

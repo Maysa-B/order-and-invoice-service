@@ -1,6 +1,6 @@
 const env = process.env
 
-const { API_URL } = env
+const { AUTH_SERVICE } = env
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -10,7 +10,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
     public: {
-      API_URL
+      AUTH_SERVICE
     }
   }
 })

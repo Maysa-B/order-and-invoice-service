@@ -1,6 +1,6 @@
 const { validateToken } = require('../helpers/jwt')
 
-const paths = ['/login', '/auth/google/callback', '/logout']
+const paths = ['/login', '/register', '/auth/google/callback', '/logout', '/auth/google']
 
 module.exports = async (req, res, next) => {
     if (paths.includes(req.path)) return next()

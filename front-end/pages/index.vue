@@ -9,7 +9,7 @@
 				<section class="d-flex justify-content-around align-items-center w-100 pt-2">
 					<button @click="submitForm" class="btn btn-sm btn-primary mt-1">Login</button>
 					<span class="small">or</span>
-					<a class="btn btn-sm btn-light" href="http://localhost:4000/login">
+					<a class="btn btn-sm btn-light" :href="`${env.public.AUTH_SERVICE}/auth/google`">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 							class="bi bi-google" viewBox="0 0 16 16">
 							<path
@@ -27,6 +27,18 @@
 
 <script setup>
 const toast = ref(null)
+const authStore = useAuthStore()
+const env = useRuntimeConfig()
+const axios = useAxios()
+const router = useRouter()
+
+definePageMeta({
+    middleware: ['auth']
+})
+
+onBeforeMount(() => {
+	if (authStore?.token) router.push('/inside')
+})
 
 const form = ref({
 	email: '',
@@ -42,7 +54,12 @@ const submitForm = async () => {
 	if (!/^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/.test(formValue.email))
 		return toast.value.showToast('Invalid email', 'error')
 
-	// acessa api de login
+	await axios.post(`${env.public.AUTH_SERVICE}/login`, form.value).then(({ user, token }) => {
+		authStore.setCookies(user, token)
+		router.push('/inside')
+	}).catch(err => {
+		console.log(err)
+		toast.value.showToast(err?.response?.data?.message, 'error')})
 }
 
 </script>

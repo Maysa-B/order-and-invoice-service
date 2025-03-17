@@ -20,6 +20,13 @@ export const useAuthStore = defineStore('authStore', {
 
             this.user = null
             this.token = null
+        },
+        setCookies(user, token) {
+            Cookie.set('user', JSON.stringify(user))
+            Cookie.set('token', JSON.stringify(token))
+
+            this.token = token
+            this.user = user
         }
     }
 })
