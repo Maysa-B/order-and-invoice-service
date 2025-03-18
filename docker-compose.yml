@@ -36,8 +36,6 @@ services:
 
   auth-service:
     build: ./auth-service
-    depends_on:
-      - kafka
     ports:
       - "4000:4000"
 
@@ -47,3 +45,10 @@ services:
       - kafka
     ports:
       - "5000:5000"
+
+  payment-service:
+    build: ./payment-service
+    depends_on:
+      - kafka
+    ports:
+      - "6000:6000"  

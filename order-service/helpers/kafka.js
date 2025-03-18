@@ -15,21 +15,4 @@ const createOrder = async (data) => {
     })
 }
 
-const createConsumer = async () => {
-    const consumer = kafka.consumer({ groupId: 'invoice-group' })
-    
-    await consumer.connect()
-    await consumer.subscribe({ topic: 'order.placed', fromBeginning: true })
-    
-    await consumer.run({
-      eachMessage: async ({ topic, partition, message }) => {
-        console.log(topic)
-        console.log(partition)
-        console.log(JSON.parse(message.value.toString()) || {})
-      },
-    })
-}
-
-createConsumer()
-
 module.exports = { createOrder }
