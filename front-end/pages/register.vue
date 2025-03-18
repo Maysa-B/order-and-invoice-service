@@ -52,6 +52,8 @@ const form = ref({
 const submitForm = async () => {
 	const formValue = form.value
 
+	// is-invalid class para erros
+	// https://getbootstrap.com/docs/5.3/forms/floating-labels/#input-groups
     if (!formValue.email || !formValue.password || !formValue.name)
 		return toast.value.showToast('All fields are required', 'error')
 
