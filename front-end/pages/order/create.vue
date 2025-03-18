@@ -8,12 +8,16 @@
                 <button @click="submitForm" class="btn btn-primary mt-1">Create order</button>
             </section>
         </div>
+        <Toast ref="toast" />
     </div>
 </template>
 
 <script setup>
-const router = useRouter()
 const toast = ref(null)
+const authStore = useAuthStore()
+const env = useRuntimeConfig()
+const axios = useAxios()
+const router = useRouter()
 
 definePageMeta({
     middleware: ['auth']
@@ -32,7 +36,7 @@ const form = ref({
 const submitForm = async() => {
     // validações do formulário
 
-    await axios.post(`${env.public.ORDER_SERVICE}/orders`).then(() => {
+    await axios.post(`${env.public.ORDER_SERVICE}/orders`, form.value).then(() => {
         toast.value.showToast('Order created', 'success')
         router.push('/perfil')
     }).catch(err => {

@@ -23,6 +23,7 @@
         <section>
             <nuxt-link class="btn btn-secondary mt-5" to="/order/create">Create order</nuxt-link>
         </section>
+        <Toast ref="toast" />
     </div>
 </template>
 
