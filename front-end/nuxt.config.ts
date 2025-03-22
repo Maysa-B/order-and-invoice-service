@@ -1,6 +1,6 @@
 const env = process.env
 
-const { AUTH_SERVICE, ORDER_SERVICE } = env
+const { AUTH_SERVICE, ORDER_SERVICE, PAYMENT_SERVICE } = env
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -11,7 +11,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       AUTH_SERVICE,
-      ORDER_SERVICE
+      ORDER_SERVICE,
+      PAYMENT_SERVICE
     }
   }
 })

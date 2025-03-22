@@ -12,7 +12,7 @@ RUN npm install
 COPY . .
 
 # Expõe a porta 5000 (se sua API rodar nessa porta)
-EXPOSE 6000
+EXPOSE 4001
 
 # Comando para rodar o serviço
 CMD ["npm", "start"]

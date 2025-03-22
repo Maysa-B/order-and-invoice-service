@@ -9,6 +9,12 @@ router.get('/', async (req, res, next) => {
     res.json(orders)
 })
 
+router.get('/:id', async (req, res, next) => {
+    const { data: order } = await req.db.orders.get(req.params.id)
+
+    res.json(order[0])
+})
+
 router.post('/', async (req, res, next) => {
     const { data } = await req.db.orders.insert({...req.body, user_id: req.user.id})
 

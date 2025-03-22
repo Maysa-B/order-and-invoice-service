@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const db = require('./database/queries/index')
 const jwtMiddleware = require('./middleware/jwt')
+const { createConsumer } = require('./helpers/kafka')
 require('dotenv').config()
 
 const app = express()
@@ -18,4 +19,6 @@ app.use(jwtMiddleware)
 
 app.use('/payment', require('./router/payment'))
 
-app.listen(6000, () => console.log("Login Service running on port 6000"));
+createConsumer()
+
+app.listen(4001, () => console.log("Login Service running on port 4001"));

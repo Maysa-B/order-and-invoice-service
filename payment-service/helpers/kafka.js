@@ -1,4 +1,5 @@
 const { Kafka } = require('kafkajs')
+const db = require('../database/queries/index')
 
 const kafka = new Kafka({
     clientId: 'payment-service',
@@ -15,13 +16,12 @@ const orderReadyToPay = async (data) => {
     })
 }
 
-const payOrder = async (data) => {
-    // set when success
-    const success = true ? 'payment.success' : 'payment.failed'
+const payOrder = async (success, data) => {
+    const topic = success ? 'payment.success' : 'payment.failed'
 
     await producer.connect()
     await producer.send({
-        topic: success,
+        topic,
         messages: [{ value: JSON.stringify(data) }]
     })
 }
@@ -34,11 +34,10 @@ const createConsumer = async () => {
 
     await consumer.run({
         eachMessage: async ({ topic, partition, message }) => {
-            // set payment_status as pending
-            // orderReadyToPay
-            console.log(topic)
-            console.log(partition)
-            console.log(JSON.parse(message.value.toString()) || {})
+            const data = JSON.parse(message.value.toString() || {})
+            await db.orders.update({ payment_status: 'pending' }, data.id)
+
+            await orderReadyToPay(data)
         },
     })
 }

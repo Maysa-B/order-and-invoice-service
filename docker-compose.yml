@@ -51,4 +51,4 @@ services:
     depends_on:
       - kafka
     ports:
-      - "6000:6000"  
+      - "4001:4001"  

@@ -7,16 +7,21 @@
                     <th scope="col">Product</th>
                     <th scope="col">Price</th>
                     <th scope="col">Amount</th>
+                    <th scope="col">Payment status</th>
                     <th scope="col">Date</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="order in orders" :key="`${order.id}-order`">
-                    <th scope="row">{{ order.id }}</th>
+                    <th @click="router.push" scope="row">{{ order.id }}</th>
                     <td>{{ order.product }}</td>
                     <td>R$ {{ order.price }}</td>
                     <td>{{ order.amount }}</td>
+                    <td>{{ order.payment_status }}</td>
                     <td>{{ order.created_at }}</td>
+                    <td><nuxt-link class="text-decoration-none" :to="`/order/${order.id}`">open</nuxt-link></td>
+
                 </tr>
             </tbody>
         </table>
