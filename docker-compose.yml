@@ -52,3 +52,10 @@ services:
       - kafka
     ports:
       - "4002:4002"  
+  
+  invoice-service:
+    build: ./invoice-service
+    depends_on:
+      - kafka
+    ports:
+      - "4003:4003"  
