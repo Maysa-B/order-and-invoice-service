@@ -21,4 +21,4 @@ app.use('/payment', require('./router/payment'))
 
 createConsumer()
 
-app.listen(4001, () => console.log("Login Service running on port 4001"));
+app.listen(4002, () => console.log("Payment Service running on port 4002"));

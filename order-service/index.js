@@ -18,4 +18,4 @@ app.use(jwtMiddleware)
 
 app.use('/orders', require('./router/orders'))
 
-app.listen(5000, () => console.log("Login Service running on port 5000"));
+app.listen(4001, () => console.log("Order Service running on port 4001"));

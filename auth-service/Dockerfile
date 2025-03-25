@@ -11,7 +11,7 @@ RUN npm install
 # Copia todo o restante do código
 COPY . .
 
-# Expõe a porta 5000 (se sua API rodar nessa porta)
+# Expõe a porta 4000 (se sua API rodar nessa porta)
 EXPOSE 4000
 
 # Comando para rodar o serviço

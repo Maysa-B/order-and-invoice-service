@@ -29,4 +29,4 @@ app.use('/closed', (req, res, next) => {
     res.json('passouuuu')
 })
 
-app.listen(4000, () => console.log("Login Service running on port 4000"));
+app.listen(4000, () => console.log("Auth Service running on port 4000"));
