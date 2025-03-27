@@ -3,13 +3,13 @@
 		<section class="d-flex flex-column bg-body p-5 rounded justify-content-center align-items-center w-25"
 			style="--bs-bg-opacity: .5">
 			<h3 class="text-center fw-bolder">LOGIN</h3>
-			<div class="form d-flex p-5 flex-column justify-content-center align-items-center mb-4 w-100">
-				<input v-model="form.email" type="email" class="form-control m-1" placeholder="Email" />
-				<input v-model="form.password" type="password" class="form-control m-1" placeholder="Password" />
+			<div class="form d-flex p-5 flex-column justify-content-center align-items-center mb-2 w-100">
+				<FormInput :form="form" field="email" type="email" label="Email" />
+				<FormInput :form="form" field="password" type="password" label="Password" />
 				<section class="d-flex justify-content-around align-items-center w-100 pt-2">
-					<button @click="submitForm" class="btn btn-sm btn-primary mt-1">Login</button>
+					<button @click="submitForm" class="btn btn-primary mt-1">Login</button>
 					<span class="small">or</span>
-					<a class="btn btn-sm btn-light" :href="`${env.public.AUTH_SERVICE}/auth/google`">
+					<a class="btn btn-light" :href="`${env.public.AUTH_SERVICE}/auth/google`">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 							class="bi bi-google" viewBox="0 0 16 16">
 							<path
