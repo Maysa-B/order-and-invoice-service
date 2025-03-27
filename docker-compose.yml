@@ -59,3 +59,13 @@ services:
       - kafka
     ports:
       - "4003:4003"  
+
+  front-end:
+    build: ./front-end
+    depends_on:
+      - auth-service
+      - order-service
+      - payment-service
+      - invoice-service
+    ports:
+      - "3000:3000" 
