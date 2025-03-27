@@ -38,7 +38,7 @@ definePageMeta({
 })
 
 onBeforeMount(() => {
-	if (authStore?.token) router.push('/perfil')
+	if (authStore?.token) router.push('/profile')
 })
 
 
@@ -68,7 +68,7 @@ const submitForm = async () => {
 
 	await axios.post(`${env.public.AUTH_SERVICE}/register`, form.value).then(({ user, token }) => {
 		authStore.setCookies(user, token)
-		router.push('/perfil')
+		router.push('/profile')
 	}).catch(err => toast.value.showToast(err, 'error'))
 }
 

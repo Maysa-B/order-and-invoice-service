@@ -17,7 +17,7 @@ const menu = ref([])
 
 const generateMenu = (path) => {
     menu.value = [
-        { text: 'Perfil', function: () => router.push('/perfil'), active: path === '/perfil' },
+        { text: 'Profile', function: () => router.push('/profile'), active: path === '/profile' },
         { text: 'Create order', function: () => router.push('/order/create'), active: path === '/order/create' },
         { text: 'Logout', function: () => authStore.logout(router) },
     ]

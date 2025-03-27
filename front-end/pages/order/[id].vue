@@ -44,7 +44,7 @@ onBeforeMount(async () => {
 
 const pay = async () => {
     await axios.post(`${env.public.PAYMENT_SERVICE}/payment/${route.params.id}`).then(() => {
-        router.push('/perfil')
+        router.push('/profile')
     }).catch(err => {
         console.log(err)
         toast.value.showToast(err?.response?.data?.message, 'error')

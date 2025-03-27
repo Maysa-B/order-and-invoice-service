@@ -38,7 +38,7 @@ const submitForm = async() => {
 
     await axios.post(`${env.public.ORDER_SERVICE}/orders`, form.value).then(() => {
         toast.value.showToast('Order created', 'success')
-        router.push('/perfil')
+        router.push('/profile')
     }).catch(err => {
         console.log(err)
         toast.value.showToast(err?.response?.data?.message, 'error')

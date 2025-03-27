@@ -41,7 +41,7 @@ router.get('/auth/google/callback', passport.authenticate('google', {
     res.cookie('user', JSON.stringify(req.user))
     res.cookie('token', JSON.stringify(generateToken(req.user)))
     // colocar env
-    res.redirect(`http://localhost:3000/perfil`)
+    res.redirect(`http://localhost:3000/profile`)
 })
 
 router.get('/logout', (req, res) => {
