@@ -35,7 +35,7 @@ const createConsumer = async () => {
     await consumer.run({
         eachMessage: async ({ topic, partition, message }) => {
             const data = JSON.parse(message.value.toString() || {})
-            await db.orders.update({ payment_status: 'pending' }, data.id)
+            await db.orders.update({ payment_status: 'pending', status: 'payment pending' }, data.id)
 
             await orderReadyToPay(data)
         },

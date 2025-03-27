@@ -6,7 +6,7 @@ const router = express.Router()
 router.post('/:id', async (req, res, next) => {
     const paymentApproved = Math.random() > 0.2; // Simulação (80% de sucesso)
     
-    await req.db.orders.update({ payment_status: paymentApproved ? 'success' : 'failed' }, req.params.id)
+    await req.db.orders.update({ payment_status: paymentApproved ? 'success' : 'failed', status: 'processing payment' }, req.params.id)
 
     await kafka.payOrder(paymentApproved, { id: req.params.id })
 

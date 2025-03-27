@@ -7,7 +7,7 @@
                     <th scope="col">Product</th>
                     <th scope="col">Price</th>
                     <th scope="col">Amount</th>
-                    <th scope="col">Payment status</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Date</th>
                     <th scope="col"></th>
                 </tr>
@@ -18,7 +18,7 @@
                     <td>{{ order.product }}</td>
                     <td>R$ {{ order.price }}</td>
                     <td>{{ order.amount }}</td>
-                    <td>{{ order.payment_status }}</td>
+                    <td>{{ order.status }}</td>
                     <td>{{ order.created_at }}</td>
                     <td><nuxt-link class="text-decoration-none" :to="`/order/${order.id}`">open</nuxt-link></td>
 
