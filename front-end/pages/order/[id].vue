@@ -10,6 +10,7 @@
                 <p><strong>Date:</strong> {{ order.created_at }}</p>
                 <p><strong>Payment status:</strong> {{ order.payment_status }}</p>
                 <p><strong>Order status:</strong> {{ order.status }}</p>
+                <p v-if="order.invoices?.length"><strong>Invoice number:</strong> {{ order.invoices[0].number }}</p>
 
                 <button v-if="order.payment_status === 'pending'" class="btn btn-primary mt-1" @click="pay">Pay</button>
             </div>
