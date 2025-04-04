@@ -5,10 +5,10 @@ I asked ChatGpt to create a project idea for me to learn Kafka. It gave me this:
 - Create a JWT token for each user.
 2. Order Service
 - List orders from a user.
-- Create orders and publish the "order.placed" event.
+- Create orders and publish the `order.placed` event.
 3. Payment Service
-- Listen to the "order.placed" event and update the order status as pending payment.
-- When users click the "Pay" button, it randomly chooses whether the payment is successful or a failure. After, it publishes "payment.success" or "payment.failed" according to payment status.
+- Listen to the `order.placed` event and update the order status as pending payment.
+- When users click the `Pay` button, it randomly chooses whether the payment is successful or a failure. After, it publishes `payment.success` or `payment.failed` according to payment status.
 4. Invoice Service
 - Listen to payment publications.
 - If it's a success, generate an invoice number. If it isn't, update the order status to canceled.
